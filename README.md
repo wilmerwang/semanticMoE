@@ -1,6 +1,7 @@
 # semanticMoE
 
-Predict brain age for one subject from MRI-derived phenotypes (IDPs).
+semanticMoE is a semantic-guided mixture-of-experts framework for brain-age prediction and individualized brain-age composition profiling from multimodal MRI-derived phenotypes (IDPs).
+The model uses semantic embeddings of IDP metadata to guide routing to specialized local experts, while an always-active global expert processes whole-brain and hemispheric measures. Their outputs are combined to predict brain age and form an individual composition profile. Whereas the brain-age gap summarizes overall brain-age deviation as a single scalar, the profile describes how the prediction is composed across different imaging patterns.
 
 ## Setup
 
@@ -9,13 +10,6 @@ Install from the directory containing `semanticMoE/`:
 ```bash
 python -m pip install ./semanticMoE
 ```
-
-Uninstall:
-
-```bash
-python -m pip uninstall semanticMoE
-```
-
 To use without installing the package, install its dependencies and run Python from the directory containing `semanticMoE/`:
 
 ```bash
@@ -49,13 +43,8 @@ from semanticMoE import model
 # Synthetic single-subject sample; replace with your own ordered IDP values.
 idps = np.load("semanticMoE/examples/sample_idps.npy")
 
-age = model.model_predict(
-    idps, pre_trained="semanticMoE/checkpoints/brain_age_seed2026.pt"
-)
-print(age)  # Approximately 64.975 years for this sample.
+model.model_predict(idps, pre_trained="semanticMoE/checkpoints/brain_age_seed2026.pt")
 
-# Randomly initialized model, for demonstration only.
-demo_age = model.model_predict(idps)
 ```
 
 `pre_trained` accepts a bundled checkpoint path (seed 2026, 42, or 3407). Omitting it uses random model parameters without loading trained weights. The interface runs on CPU and accepts one subject per call.
