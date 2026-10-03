@@ -1,6 +1,6 @@
 # semanticMoE
 
-semanticMoE is a semantic-guided mixture-of-experts framework for brain-age prediction and individualized brain-age composition profiling from multimodal MRI-derived phenotypes (IDPs).
+semanticMoE is a semantic-guided mixture-of-experts framework for brain-age prediction and individualized brain-age composition profiling from multimodal imaging-derived phenotypes (IDPs).
 The model uses semantic embeddings of IDP metadata to guide routing to specialized local experts, while an always-active global expert processes whole-brain and hemispheric measures. Their outputs are combined to predict brain age and form an individual composition profile. Whereas the brain-age gap summarizes overall brain-age deviation as a single scalar, the profile describes how the prediction is composed across different imaging patterns.
 
 ## Setup
